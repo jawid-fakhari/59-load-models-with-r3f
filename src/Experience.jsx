@@ -1,8 +1,9 @@
-import { OrbitControls } from '@react-three/drei'
-import { Perf } from 'r3f-perf'
-import Model from './Model'
 import { Suspense } from 'react'
+import { Perf } from 'r3f-perf'
+import { OrbitControls } from '@react-three/drei'
 
+import Model from './Model'
+import Placeholder from './Placeholder'
 
 export default function Experience() {
 
@@ -22,7 +23,10 @@ export default function Experience() {
             <meshStandardMaterial color="greenyellow" />
         </mesh>
         {/* suspense è un tag del react che fa lazy loading */}
-        <Suspense>
+        <Suspense
+            //con il fallback possiamo creare una geometria primitiva leggera che viene visualizzata mentre si carica il modello principale
+            fallback={<Placeholder position-y={0.5} scale={[2, 3, 2]} />}
+        >
             <Model />
         </Suspense>
 
