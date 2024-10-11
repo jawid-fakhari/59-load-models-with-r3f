@@ -1,21 +1,13 @@
 import { OrbitControls } from '@react-three/drei'
-import { useLoader } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
-import { DRACOLoader, GLTFLoader } from 'three/examples/jsm/Addons.js'
+import Model from './Model'
+import { Suspense } from 'react'
+
 
 export default function Experience() {
-    const model = useLoader(
-        GLTFLoader,
-        './hamburger-draco.glb',
-        (loader) => {
-            //init DRACOLoader
-            const dracoLoader = new DRACOLoader()
-            dracoLoader.setDecoderPath('./draco/')
-            loader.setDRACOLoader(dracoLoader)
-        })
+
 
     return <>
-
         <Perf position="top-left" />
 
         <OrbitControls makeDefault />
@@ -29,9 +21,10 @@ export default function Experience() {
             <planeGeometry />
             <meshStandardMaterial color="greenyellow" />
         </mesh>
-
-        {/* con primitive posso inserire il mio modello alla scena */}
-        <primitive object={model.scene} scale={0.35} />
+        {/* suspense è un tag del react che fa lazy loading */}
+        <Suspense>
+            <Model />
+        </Suspense>
 
     </>
 }
