@@ -5,6 +5,8 @@ import { OrbitControls } from '@react-three/drei'
 import Model from './Model'
 import Placeholder from './Placeholder'
 import Hamburger from './Hamburger' //importare componente creato dal modello Hamburger con https://gltf.pmnd.rs/ ⬇️
+import Fox from './Fox'
+
 
 export default function Experience() {
 
@@ -34,6 +36,8 @@ export default function Experience() {
         >
             <Hamburger scale={0.35} /> {/*⬆️*/}
         </Suspense>
+
+        <Fox />
 
     </>
 }
