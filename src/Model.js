@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei";
+import { Clone, useGLTF } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { DRACOLoader, GLTFLoader } from "three/examples/jsm/Addons.js";
 
@@ -17,5 +17,14 @@ export default function Model() {
   const model = useGLTF("./hamburger-draco.glb"); //è supportato tutti file!
 
   //con primitive posso inserire il mio modello alla scena
-  return <primitive object={model.scene} scale={0.35} />;
+  // return <primitive object={model.scene} scale={0.35} />;
+
+  //Multiple Instances, come clonare un oggetto in drei
+  return (
+    <>
+      <Clone object={model.scene} scale={0.15} position-x={-4} />
+      <Clone object={model.scene} scale={0.25} position-x={0} />
+      <Clone object={model.scene} scale={0.15} position-x={4} />
+    </>
+  );
 }
