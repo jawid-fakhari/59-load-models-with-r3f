@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei'
 
 import Model from './Model'
 import Placeholder from './Placeholder'
+import Hamburger from './Hamburger' //importare componente creato dal modello Hamburger con https://gltf.pmnd.rs/ ⬇️
 
 export default function Experience() {
 
@@ -13,7 +14,11 @@ export default function Experience() {
 
         <OrbitControls makeDefault />
 
-        <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
+        <directionalLight
+            castShadow position={[1, 2, 3]}
+            intensity={4.5}
+            shadow-normalBias={0.04} //shadow normal bias, Shadow acne: nei modelli tondi, model casting shadows on itslef
+        />
         <ambientLight intensity={1.5} />
 
 
@@ -27,7 +32,7 @@ export default function Experience() {
             //con il fallback possiamo creare una geometria primitiva leggera che viene visualizzata mentre si carica il modello principale
             fallback={<Placeholder position-y={0.5} scale={[2, 3, 2]} />}
         >
-            <Model />
+            <Hamburger scale={0.35} /> {/*⬆️*/}
         </Suspense>
 
     </>
